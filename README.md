@@ -38,13 +38,13 @@ using namespace crypto;
 auto
 hash(const auto &trivially_copyable_objects) {
 
-	auto hasher = SHA2<256>();
+    auto hasher = SHA2<256>();
 
-	for (const auto &entry: trivially_copyable_objects) {
-	    hasher.update(entry);
-	}
+    for (const auto &entry: trivially_copyable_objects) {
+        hasher.update(entry);
+    }
 
-	return rmd<160>(hasher.update("secret").digest());
+    return rmd<160>(hasher.update("secret").digest());
 }
 ```
 
@@ -69,14 +69,14 @@ using namespace crypto;
 
 auto
 hash(const auto &trivially_copyable_objects) {
-	
-	auto hasher = HMAC<SHA2<256>>("secret 1");
 
-	for (const auto &entry: trivially_copyable_objects) {
-	    hasher.update(entry);
-	}
+    auto hasher = HMAC<SHA2<256>>("secret 1");
 
-	return hmac<RMD<160>>("secret 2", hasher.digest());
+    for (const auto &entry: trivially_copyable_objects) {
+        hasher.update(entry);
+    }
+
+    return hmac<RMD<160>>("secret 2", hasher.digest());
 }
 ```
 
